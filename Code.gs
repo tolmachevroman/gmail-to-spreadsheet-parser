@@ -7,7 +7,9 @@ function processEmailsForMonth() {
 
   const query = `label:BCI after:${year}-${String(month).padStart(2, '0')}-01 before:${nextYear}-${String(nextMonth).padStart(2, '0')}-01`;
   const threads = GmailApp.search(query);
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = spreadsheet.setActiveSheet(spreadsheet.getSheets()[1]);
 
   const startOfMonth = new Date(year, month - 1, 1);
   const endOfMonth = new Date(year, month, 1); // first day of next month
